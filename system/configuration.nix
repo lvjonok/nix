@@ -18,9 +18,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
 
-  # Home Manager settings
-  home-manager.backupFileExtension = "hm-bak"; # Or any other extension you prefer, like "backup"
-
   # System-wide environment variables if needed
   # environment.sessionVariables = { };
 }
