@@ -21,6 +21,10 @@
     gawk # For the nvidia stats script
     pavucontrol # Add pavucontrol for the Waybar pulseaudio module
 
+    telegram-desktop
+
+    nixpkgs-fmt
+
     # Script for NVIDIA Waybar stats
     (pkgs.writeShellScriptBin "get-nvidia-stats" ''
       #!${pkgs.bash}/bin/bash

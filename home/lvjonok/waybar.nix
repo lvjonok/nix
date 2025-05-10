@@ -5,7 +5,8 @@
     enable = true;
     # package = pkgs.waybar; # Or a specific variant like pkgs.waybar-hyprland
     settings = {
-      mainBar = { # You can define multiple bars, "mainBar" is just a name
+      mainBar = {
+        # You can define multiple bars, "mainBar" is just a name
         layer = "top";
         position = "top"; # "top", "bottom", "left", "right"
         height = 30;
@@ -16,16 +17,16 @@
         # Modules center
         modules-center = [ "hyprland/window" ];
         # Modules right
-        modules-right = [ "custom/nvidia" "pulseaudio" "network" "cpu" "memory" "temperature" "clock" "tray" ]; # Added "custom/nvidia"
+        modules-right = [ "custom/nvidia" "pulseaudio" "network" "cpu" "memory" "temperature" "clock" "tray" "custom/notifications" ];
 
         "hyprland/workspaces" = {
           format = "{name}: {icon}";
           format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
+            # "1" = "";
+            # "2" = "";
+            # "3" = "";
+            # "4" = "";
+            # "5" = "";
             "urgent" = "";
             "focused" = "";
             "default" = "";
@@ -41,6 +42,7 @@
         "clock" = {
           format = "{:%Y-%m-%d %H:%M:%S}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          interval = 1;
         };
         "cpu" = {
           format = "CPU: {usage}% ";
@@ -63,6 +65,12 @@
           tooltip = true; # The script provides a "tooltip" field
           # You can add class for styling, e.g. "class": "nvidia-stats",
         };
+        "custom/notifications" = {
+          format = "{output}";
+          exec = "macoctl list";
+          interval = 5;
+          tooltip = false;
+        };
         "network" = {
           # interface = "wlp2s0"; # Select interface
           format-wifi = "{essid} ({signalStrength}%) ";
@@ -75,33 +83,31 @@
           # scroll-step = 1; # %, can be a float
           format = "{volume}% {icon} {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
-          format-bluetooth-muted = " {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
           format-muted = " {format_source}";
           format-source = "{volume}% ";
           format-source-muted = "";
           format-icons = {
             headphone = "";
-            hands-free = "";
-            headset = "";
             phone = "";
             portable = "";
             car = "";
-            default = ["" "" ""];
+            default = [ "" "" "" ];
           };
           on-click = "pavucontrol";
         };
-        "battery" = {
-          states = {
-            good = 95;
-            warning = 30;
-            critical = 15;
-          };
-          format = "{capacity}% {icon}";
-          format-charging = "{capacity}% ";
-          format-plugged = "{capacity}% ";
-          format-alt = "{time} {icon}";
-          format-icons = ["" "" "" "" ""];
-        };
+        # "battery" = {
+        #   states = {
+        #     good = 95;
+        #     warning = 30;
+        #     critical = 15;
+        #   };
+        #   format = "{capacity}% {icon}";
+        #   format-charging = "{capacity}% ";
+        #   format-plugged = "{capacity}% ";
+        #   format-alt = "{time} {icon}";
+        #   format-icons = ["" "" "" "" ""];
+        # };
         "tray" = {
           icon-size = 21;
           spacing = 10;

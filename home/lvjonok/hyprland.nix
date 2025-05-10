@@ -17,6 +17,11 @@
         "DP-1,2560x1440@165,1440x0,1"
       ];
 
+      # Assign workspaces to monitors
+      workspace = [
+        "1, monitor:DP-1"
+      ];
+
       # Execute your favorite apps at launch
       exec-once = [
         "waybar" # If you use waybar

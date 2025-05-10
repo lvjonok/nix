@@ -6,6 +6,7 @@
     ./programs.nix
     ./hyprland.nix
     ./waybar.nix
+    ./services.nix
     # You can add more modules here, e.g., ./git.nix, ./shell.nix
   ];
 
