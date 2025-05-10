@@ -120,16 +120,16 @@
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       "$mainMod" = "SUPER"; # Sets "Windows" key as main modifier
+      "$menu" = "pkill rofi || rofi -show drun -modes drun,window,ssh -show-icons";
 
       bind = [
-        "$mainMod, Q, exec, kitty" # Launch terminal (kitty in this case)
-        "$mainMod, C, killactive,"
-        "$mainMod, M, exit,"
-        "$mainMod, E, exec, nemo" # Example: Launch file manager (nemo)
+        # "$mainMod, Q, exec, kitty" # Launch terminal (kitty in this case)
+        "$mainMod SHIFT, Q, killactive," # New keybinding to kill active window
+        # "$mainMod, M, exit,"
+        # "$mainMod, E, exec, nemo" # Example: Launch file manager (nemo)
         "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, rofi -show drun" # Launch application launcher (rofi)
-        "$mainMod, P, pseudo," # dwindle
-        "$mainMod, J, togglesplit," # dwindle
+        "$mainMod, D, exec, $menu" # Launch application launcher (rofi)
+        # "$mainMod, P, pseudo," # dwindle
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -169,8 +169,8 @@
         # ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
         # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        # "$mainMod, mouse_down, workspace, e+1"
+        # "$mainMod, mouse_up, workspace, e-1"
       ];
 
       bindm = [
@@ -183,6 +183,14 @@
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # windowrulev2 = size 800 600,class:^(kitty)$,title:^(kitty)$
       # windowrulev2 = move 75 44,class:^(kitty)$,title:^(kitty)$
+      windowrulev2 = [
+        "float, class:^(Pavucontrol)$"
+        "size 800 600, class:^(Pavucontrol)$"
+        "center, class:^(Pavucontrol)$"
+        "float, class:^(Volume Control)$"
+        "size 800 600, class:^(Volume Control)$"
+        "center, class:^(Volume Control)$"
+      ];
     };
 
     # You can also set Hyprland environment variables here if needed

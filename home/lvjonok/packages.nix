@@ -11,7 +11,7 @@
     git # User-level git
     ghostty
     rofi-wayland
-    kitty
+    # kitty
     google-chrome
     vscode
     # firefox # Managed by programs.firefox.enable instead if you prefer that
@@ -19,6 +19,7 @@
 
     direnv
     gawk # For the nvidia stats script
+    pavucontrol # Add pavucontrol for the Waybar pulseaudio module
 
     # Script for NVIDIA Waybar stats
     (pkgs.writeShellScriptBin "get-nvidia-stats" ''

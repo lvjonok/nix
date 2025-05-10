@@ -62,4 +62,18 @@
       "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
     };
   };
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland; # Use rofi-wayland
+    theme = "Arc";
+    terminal = "ghostty";
+    # You can add other Rofi settings here if needed
+    # For example:
+    # extraConfig = {
+    #   modi = "drun,run,window";
+    #   icon-theme = "Papirus";
+    #   show-icons = true;
+    # };
+  };
 }
