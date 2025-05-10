@@ -22,6 +22,14 @@
     # '';
   };
 
+  programs.direnv = {
+    enable = true;
+    # enableFishIntegration = true; # If you use Fish shell
+    # enableZshIntegration = true; # If you use Zsh
+    # enableBashIntegration = true; # If you use Bash
+    nix-direnv.enable = true; # Highly recommended for Nix projects
+  };
+
   # Example: Starship prompt for fish (and other shells)
   # programs.starship = {
   #   enable = true;
@@ -38,7 +46,11 @@
   programs.vscode = {
     enable = true;
     # package = pkgs.vscodium; # If you prefer VSCodium
-    # extensions = with pkgs.vscode-extensions; [ ... ];
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+      mkhl.direnv
+      arrterian.nix-env-selector
+    ];
     # userSettings = { ... };
   };
 }

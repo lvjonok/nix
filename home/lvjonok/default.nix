@@ -4,6 +4,7 @@
   imports = [
     ./packages.nix
     ./programs.nix
+    ./hyprland.nix # Add this line
     # You can add more modules here, e.g., ./git.nix, ./shell.nix
   ];
 
