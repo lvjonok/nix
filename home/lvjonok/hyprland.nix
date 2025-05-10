@@ -13,14 +13,8 @@
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = [
-        "DP-1,2560x1440@164.83,0x0,1" # Main monitor
-        # HDMI-A-1: native res 2560x1440, refresh 74.97Hz
-        # Positioned at x=-1440 (left of DP-1), y=0
-        # Scale 1
-        # Transform 1 (rotated 90 degrees counter-clockwise)
-        "HDMI-A-1,2560x1440@74.97,-1440x0,1,1" 
-        # Add more monitors as needed. Use `hyprctl monitors` to find names.
-        # e.g., "eDP-1,preferred,auto,1" for an internal laptop display
+        "HDMI-A-1,2560x1440@60,0x0,1,transform,1"
+        "DP-1,2560x1440@165,1440x0,1"
       ];
 
       # Execute your favorite apps at launch
@@ -79,10 +73,10 @@
           passes = 1;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        # drop_shadow = true;
+        # shadow_range = 4;
+        # shadow_render_power = 3;
+        # "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -110,7 +104,7 @@
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true;
+        # new_is_master = true;
       };
 
       gestures = {
