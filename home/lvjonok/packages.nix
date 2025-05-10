@@ -24,6 +24,7 @@
     telegram-desktop
 
     nixpkgs-fmt
+    nixfmt
 
     # Script for NVIDIA Waybar stats
     (pkgs.writeShellScriptBin "get-nvidia-stats" ''

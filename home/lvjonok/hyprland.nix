@@ -18,9 +18,7 @@
       ];
 
       # Assign workspaces to monitors
-      workspace = [
-        "1, monitor:DP-1"
-      ];
+      workspace = [ "1, monitor:DP-1" ];
 
       # Execute your favorite apps at launch
       exec-once = [
@@ -33,25 +31,16 @@
       # source = "~/.config/hypr/myColors.conf"
 
       # Some default env vars.
-      env = [
-        "XCURSOR_SIZE,24"
-      ];
+      env = [ "XCURSOR_SIZE,24" ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {
-        kb_layout = "us";
-        kb_variant = "";
-        kb_model = "";
-        kb_options = "";
-        kb_rules = "";
+        kb_layout = "us, ru";
+        kb_options = "grp:win_space_toggle";
 
         follow_mouse = 1;
 
-        touchpad = {
-          natural_scroll = false;
-        };
-
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        # sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
 
       general = {
@@ -103,7 +92,8 @@
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        pseudotile =
+          true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
       };
 
@@ -119,13 +109,15 @@
 
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/#misc
-        force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper =
+          -1; # Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo = true;
       };
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       "$mainMod" = "SUPER"; # Sets "Windows" key as main modifier
-      "$menu" = "pkill rofi || rofi -show drun -modes drun,window,ssh -show-icons";
+      "$menu" =
+        "pkill rofi || rofi -show drun -modes drun,window,ssh -show-icons";
 
       bind = [
         # "$mainMod, Q, exec, kitty" # Launch terminal (kitty in this case)

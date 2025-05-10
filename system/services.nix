@@ -5,7 +5,8 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false; # Explicitly disable pulseaudio if using pipewire for pulse
+  services.pulseaudio.enable =
+    false; # Explicitly disable pulseaudio if using pipewire for pulse
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

@@ -20,17 +20,18 @@
       noto-fonts-cjk-sans # Explicitly include for CJK support
       noto-fonts-emoji # Explicitly include for emoji support
 
-      nerd-fonts.symbols-only #This one
+      nerd-fonts.symbols-only # This one
     ];
   };
 
   # List packages installed in system profile.
   # Most user applications should be in home-manager.
   # Keep this list minimal, for system-wide tools if any.
-  environment.systemPackages = with pkgs; [
-    git
-    # e.g., git if needed for system scripts, otherwise move to home-manager
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      git
+      # e.g., git if needed for system scripts, otherwise move to home-manager
+    ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data were taken. It‘s perfectly fine and recommended to leave

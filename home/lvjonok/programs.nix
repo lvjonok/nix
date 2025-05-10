@@ -56,10 +56,12 @@
       # Make sure "JetBrainsMono Nerd Font" is listed.
       # You can add fallbacks if desired.
       "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
-      "editor.fontLigatures" = true; # Enable font ligatures if your font supports them
+      "editor.fontLigatures" =
+        true; # Enable font ligatures if your font supports them
       # Add any other VS Code settings you want to manage here
       # For example, to set the terminal font:
-      "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
+      "terminal.integrated.fontFamily" =
+        "'JetBrainsMono Nerd Font', 'monospace'";
     };
   };
 

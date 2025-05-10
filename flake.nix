@@ -13,10 +13,8 @@
     nixosConfigurations."lvjonok-nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux"; # Adjust if your architecture is different
       specialArgs = { inherit inputs; }; # Pass flake inputs to modules
-      modules = [
-        ./system/configuration.nix
-        home-manager.nixosModules.home-manager
-      ];
+      modules =
+        [ ./system/configuration.nix home-manager.nixosModules.home-manager ];
     };
   };
 }

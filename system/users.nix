@@ -4,7 +4,10 @@
   users.users.lvjonok = {
     isNormalUser = true;
     description = "Lev";
-    extraGroups = [ "networkmanager" "wheel" ]; # Add other groups like 'video', 'audio' if needed
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ]; # Add other groups like 'video', 'audio' if needed
     shell = pkgs.fish; # System-level shell for the user
   };
 

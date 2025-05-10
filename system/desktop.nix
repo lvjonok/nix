@@ -14,7 +14,6 @@
   # Assuming sddm is still desired for Hyprland, otherwise choose a different DM or none
   services.displayManager.sddm.enable = true;
 
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

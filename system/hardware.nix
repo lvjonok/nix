@@ -13,7 +13,8 @@
     enable32Bit = true;
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
-  services.xserver.videoDrivers = [ "nvidia" ]; # Ensure this matches your hardware
+  services.xserver.videoDrivers =
+    [ "nvidia" ]; # Ensure this matches your hardware
 
   hardware.nvidia = {
     modesetting.enable = true; # Required for Wayland
@@ -22,9 +23,11 @@
     forceFullCompositionPipeline = false; # NOTE: may cause issues with WebGL
     open = true; # Use open-source kernel modules if available and preferred
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta; # Or .stable, .production
+    package =
+      config.boot.kernelPackages.nvidiaPackages.beta; # Or .stable, .production
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
 }

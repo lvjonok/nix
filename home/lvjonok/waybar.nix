@@ -1,5 +1,11 @@
 { pkgs, ... }:
-
+let
+  common = {
+    height = 30;
+    # width = 1280; # Uncomment if you want a fixed width
+    spacing = 4;
+  };
+in
 {
   programs.waybar = {
     enable = true;
@@ -9,18 +15,27 @@
         # You can define multiple bars, "mainBar" is just a name
         layer = "top";
         position = "top"; # "top", "bottom", "left", "right"
-        height = 30;
-        # width = 1280; # Uncomment if you want a fixed width
-        spacing = 4;
+        output = [ "DP-1" ];
         # Modules left
         modules-left = [ "hyprland/workspaces" "hyprland/mode" ];
         # Modules center
         modules-center = [ "hyprland/window" ];
         # Modules right
-        modules-right = [ "custom/nvidia" "pulseaudio" "network" "cpu" "memory" "temperature" "clock" "tray" "custom/notifications" ];
+        modules-right = [
+          "custom/nvidia"
+          "pulseaudio"
+          "network"
+          "cpu"
+          "memory"
+          "temperature"
+          "clock"
+          "tray"
+          "custom/notifications"
+          "hyprland/language"
+        ];
 
         "hyprland/workspaces" = {
-          format = "{name}: {icon}";
+          format = "{name}";
           format-icons = {
             # "1" = "";
             # "2" = "";
@@ -41,16 +56,19 @@
         };
         "clock" = {
           format = "{:%Y-%m-%d %H:%M:%S}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          tooltip-format = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
           interval = 1;
         };
         "cpu" = {
           format = "CPU: {usage}% ";
           tooltip = true;
         };
-        "memory" = {
-          format = "MEM: {}% ";
-        };
+        "memory" = { format = "MEM: {}% "; };
+        # height = 30; # Removed, as it's in common
+        # width = 1280; # Uncomment if you want a fixed width
+        # spacing = 4; # Removed, as it's in common
         "temperature" = {
           thermal-zone = 0; # Adjust to your thermal zone
           format = "{temperatureC}°C ";
@@ -58,7 +76,8 @@
           format-critical = "{temperatureC}°C ";
         };
         "custom/nvidia" = {
-          exec = "get-nvidia-stats"; # Name of the script defined in packages.nix
+          exec =
+            "get-nvidia-stats"; # Name of the script defined in packages.nix
           format = "{}"; # The script outputs JSON with a "text" field
           return-type = "json";
           interval = 2; # Update every 2 seconds
@@ -112,7 +131,30 @@
           icon-size = 21;
           spacing = 10;
         };
-      };
+      } // common;
+      secondBar = {
+        layer = "top";
+        position = "top";
+        # height = 30; # Already in common
+        # spacing = 4; # Already in common
+        output = [ "HDMI-A-1" ];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-right = [ "clock" "tray" ];
+        "clock" = {
+          # // "timezone": "America/New_York",
+          tooltip-format = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
+          interval = 1;
+          format = "{:%H:%M:%S}";
+          format-alt = "{:%Y-%m-%d}";
+        };
+        "tray" = { spacing = 10; };
+        "hyprland/workspaces" = {
+          format = "<sub>{icon}</sub>";
+          format-window-separator = " ";
+        };
+      } // common; # // Apply common settings to secondBar
     };
     style = ''
       * {
