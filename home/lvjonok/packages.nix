@@ -22,6 +22,8 @@
     pavucontrol # Add pavucontrol for the Waybar pulseaudio module
 
     telegram-desktop
+    logseq
+    zotero
 
     nixpkgs-fmt
     nixfmt
