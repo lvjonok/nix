@@ -50,18 +50,28 @@
       jnoortheen.nix-ide
       mkhl.direnv
       arrterian.nix-env-selector
+      ms-vscode-remote.remote-ssh
+
+      # themes
+      github.github-vscode-theme
     ];
     userSettings = {
       # Set the editor font family
       # Make sure "JetBrainsMono Nerd Font" is listed.
       # You can add fallbacks if desired.
       "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
+      "editor.fontSize" = 12;
+      "terminal.integrated.fontSize" = 12;
       "editor.fontLigatures" =
         true; # Enable font ligatures if your font supports them
       # Add any other VS Code settings you want to manage here
       # For example, to set the terminal font:
       "terminal.integrated.fontFamily" =
         "'JetBrainsMono Nerd Font', 'monospace'";
+
+      # Set theme
+      "workbench.colorTheme" = "GitHub Light";
+      
     };
   };
 
