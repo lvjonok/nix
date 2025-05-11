@@ -19,6 +19,17 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
 
+  # Cuda setup
+  nixpkgs.config.cudaSupport = true;
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+    extraOptions = "--default-runtime=nvidia";
+  };
+  networking.networkmanager.enable = true;
+
+  hardware.nvidia-container-toolkit.enable = true;
+
   # System-wide environment variables if needed
   # environment.sessionVariables = { };
 }
