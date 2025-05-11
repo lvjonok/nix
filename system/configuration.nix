@@ -12,6 +12,7 @@
     ./services.nix
     ./users.nix
     ./options.nix
+    ./distributed-build.nix
   ];
 
   # Basic Nix settings
