@@ -78,4 +78,10 @@
     #   show-icons = true;
     # };
   };
+
+  programs.nix-index = {
+    enable = true;
+    # package = pkgs.nix-index; # If you want to use a specific version
+    enableFishIntegration = true; # If you use Fish shell
+  };
 }

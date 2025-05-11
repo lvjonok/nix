@@ -158,6 +158,11 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
+        # Screenshots
+        "$mainMod, Print, exec, env HYPRSHOT_DIR=$HOME/Pictures hyprshot -m window"
+        ",Print, exec, env HYPRSHOT_DIR=$HOME/Pictures hyprshot -m output"
+        "$mainMod SHIFT, Print, exec, env HYPRSHOT_DIR=$HOME/Pictures hyprshot -m region"
+
         # Example special keys
         # ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
         # ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"

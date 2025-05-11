@@ -29,6 +29,8 @@
   # Keep this list minimal, for system-wide tools if any.
   environment.systemPackages = with pkgs;
     [
+      nautilus
+      micromamba
       git
       # e.g., git if needed for system scripts, otherwise move to home-manager
     ];

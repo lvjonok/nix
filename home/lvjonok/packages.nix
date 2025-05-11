@@ -25,6 +25,30 @@
 
     nixpkgs-fmt
     nixfmt
+    nmap
+    hyprshot
+
+    (pkgs.buildFHSUserEnv {
+      name = "pixi";
+      runScript = "pixi";
+      targetPkgs = pkgs: with pkgs; [ pixi ];
+    })
+
+    (pkgs.buildFHSUserEnv {
+      name = "micromamba-shell";
+      # the only “real” binary we need inside the chroot:
+      targetPkgs = pkgs: [ pkgs.micromamba ];
+
+      # drop into your login shell instead of plain bash
+      # runScript = "${pkgs.zsh}/bin/zsh" + " -l";
+
+      profile = ''
+        set -e
+        eval "$(micromamba shell hook --shell=posix)"
+        export MAMBA_ROOT_PREFIX=$HOME/.mamba
+        set +e
+      '';
+    })
 
     # Script for NVIDIA Waybar stats
     (pkgs.writeShellScriptBin "get-nvidia-stats" ''
