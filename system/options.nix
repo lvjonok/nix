@@ -32,6 +32,7 @@
       nautilus
       micromamba
       git
+      lm_sensors
       # e.g., git if needed for system scripts, otherwise move to home-manager
     ];
 

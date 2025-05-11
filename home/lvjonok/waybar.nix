@@ -70,10 +70,12 @@ in
         # width = 1280; # Uncomment if you want a fixed width
         # spacing = 4; # Removed, as it's in common
         "temperature" = {
-          thermal-zone = 0; # Adjust to your thermal zone
-          format = "{temperatureC}°C ";
+          exec = "sensors | awk '/Package id 0:/ {print $4+0}'"; # Updated exec command
+          format = "{}°C "; # Added °C for clarity, ensure exec outputs only number
+          interval = 5; # Update every 5 seconds
           critical-threshold = 80;
-          format-critical = "{temperatureC}°C ";
+          format-critical = "{}°C "; # Added °C
+          tooltip = true; # Added for debugging
         };
         "custom/nvidia" = {
           exec =
@@ -86,7 +88,7 @@ in
         };
         "custom/notifications" = {
           format = "{output}";
-          exec = "macoctl list";
+          exec = "makoctl list";
           interval = 5;
           tooltip = false;
         };
