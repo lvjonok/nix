@@ -44,6 +44,12 @@
 
     # Script for NVIDIA Waybar stats
     (import ./get-nvidia-stats.nix { inherit pkgs; })
+
+    # wine
+    wineWowPackages.stable
+
+    # kakaotalk
+    (import ./kakaotalk.nix { inherit pkgs; })
   ];
 
   # Sway configuration management
