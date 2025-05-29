@@ -34,6 +34,13 @@
     pavucontrol
 
     mako
+    gh
+    logseq
+    zotero
+    qbittorrent
+    zellij
+
+    direnv
 
     # Script for NVIDIA Waybar stats
     (import ./get-nvidia-stats.nix { inherit pkgs; })
@@ -66,6 +73,21 @@
       arrterian.nix-env-selector
       ms-vscode-remote.remote-ssh
 
+      # python
+      ms-python.python
+      ms-python.vscode-pylance
+      ms-toolsai.jupyter
+
+      # golang
+      golang.go
+
+      # cpp
+      llvm-vs-code-extensions.vscode-clangd
+
+      # docker
+      ms-vscode-remote.remote-containers
+      ms-azuretools.vscode-docker
+
       github.github-vscode-theme
     ];
     userSettings = {
@@ -75,7 +97,28 @@
       "editor.fontLigatures" = true;
       "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
       "workbench.colorTheme" = "GitHub Light";
+
+      # "python.analysis.typeCheckingMode" = "basic";
     };
+
+    # {
+    #     "key": "Alt+LeftArrow",
+    #     "command": "workbench.action.navigateBack",
+    #     "when": "canNavigateBack"
+    # }
+
+    keybindings = [
+      {
+        "key" = "Alt+Left";
+        "command" = "workbench.action.navigateBack";
+        # "when" = "canNavigateBack";
+      }
+      {
+        "key" = "Alt+Right";
+        "command" = "workbench.action.navigateForward";
+        # "when" = "canNavigateForward";
+      }
+    ];
   };
 
   # programs.fish = {
