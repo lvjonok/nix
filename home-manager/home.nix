@@ -19,7 +19,14 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    google-chrome
+    # google-chrome
+    (google-chrome.override {
+      commandLineArgs = [
+        "--ozone-platform=wayland"
+        "--enable-features=VaapiVideoDecoder"
+        "--use-gl=egl"
+      ];
+    })
 
     # fonts 
     nerd-fonts.space-mono
@@ -40,6 +47,11 @@
     qbittorrent
     zellij
 
+    gcc
+    stdenv.cc.cc.lib
+
+    jetbrains.datagrip
+
     direnv
 
     # Script for NVIDIA Waybar stats
@@ -49,11 +61,34 @@
     wineWowPackages.stable
 
     # kakaotalk
-    (import ./kakaotalk.nix { inherit pkgs; })
+    (import ./kakaotalk.nix { inherit pkgs; wineprefix = "${config.home.homeDirectory}/.wine-prefix"; })
+
+    # gifify
+    gifsicle
+    (import ./gifify.nix { inherit pkgs; })
+
+    # vpn
+    # hiddify-app
+
+    # office
+    libreoffice-qt
   ];
+
+  # Wine configuration
+  home.sessionVariables = {
+    WINEPREFIX = "${config.home.homeDirectory}/.wine-prefix";
+    LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib/";
+  };
+
+  # Create wine prefix directory
+  home.file.".wine-prefix/.keep".text = "";
+  
+  # bluetooth control
+  services.mpris-proxy.enable = true;
 
   # Sway configuration management
   home.file.".config/sway/config".source = ./sway-config;
+  home.file.".config/sway/env".source = ./sway-env;
   home.file.".config/waybar/config".source = ./waybar/config.jsonc;
   home.file.".config/waybar/style.css".source = ./waybar/style.css;
 
@@ -82,7 +117,17 @@
       # python
       ms-python.python
       ms-python.vscode-pylance
-      ms-toolsai.jupyter
+      # ms-toolsai.jupyter
+
+      # useful tooling
+      alefragnani.bookmarks
+      twxs.cmake
+      tamasfe.even-better-toml
+      charliermarsh.ruff
+      # wayou.vscode-todo-highlight
+      gruntfuggly.todo-tree
+
+      # jjjermiah.pixi-vscode
 
       # golang
       golang.go
@@ -103,6 +148,10 @@
       "editor.fontLigatures" = true;
       "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
       "workbench.colorTheme" = "GitHub Light";
+      # "workbench.colorTheme" = "GitHub Dark Default";
+      "editor.minimap.enabled" = false;
+
+      "jupyter.runInDedicatedExtensionHost" = true;
 
       # "python.analysis.typeCheckingMode" = "basic";
     };
@@ -152,6 +201,42 @@
     };
   };
 
+  # programs.bash.profileExtra = lib.mkAfter ''
+  #   rm -rf ${config.home.homeDirectory}/.local/share/applications/home-manager
+  #   rm -rf ${config.home.homeDirectory}/.icons/nix-icons
+  #   ls ${config.home.homeDirectory}/.nix-profile/share/applications/*.desktop > ${config.home.homeDirectory}/.cache/current_desktop_files.txt
+  # '';
+  # home.activation = {
+  #   linkDesktopApplications = {
+  #     after = ["writeBoundary" "createXdgUserDirectories"];
+  #     before = [];
+  #     data = ''
+  #       rm -rf ${config.home.homeDirectory}/.local/share/applications/home-manager
+  #       rm -rf ${config.home.homeDirectory}/.icons/nix-icons
+  #       mkdir -p ${config.home.homeDirectory}/.local/share/applications/home-manager
+  #       mkdir -p ${config.home.homeDirectory}/.icons
+  #       ln -sf ${config.home.homeDirectory}/.nix-profile/share/icons ${config.home.homeDirectory}/.icons/nix-icons
+
+  #       # Check if the cached desktop files list exists
+  #       if [ -f ${config.home.homeDirectory}/.cache/current_desktop_files.txt ]; then
+  #         current_files=$(cat ${config.home.homeDirectory}/.cache/current_desktop_files.txt)
+  #       else
+  #         current_files=""
+  #       fi
+
+  #       # Symlink new desktop entries
+  #       for desktop_file in ${config.home.homeDirectory}/.nix-profile/share/applications/*.desktop; do
+  #         if ! echo "$current_files" | grep -q "$(basename $desktop_file)"; then
+  #           ln -sf "$desktop_file" ${config.home.homeDirectory}/.local/share/applications/home-manager/$(basename $desktop_file)
+  #         fi
+  #       done
+
+  #       # Update desktop database
+  #       ${pkgs.desktop-file-utils}/bin/update-desktop-database ${config.home.homeDirectory}/.local/share/applications
+  #     '';
+  #   };
+  # };
+
   # # source nix.sh into your graphical session
   # home.file.".xsessionrc".text = ''
   #   if [ -e "${pkgs.nix}/etc/profile.d/nix.sh" ]; then
@@ -161,7 +246,8 @@
 
   # # tell Home-Manager to extend your session PATH for GUI apps
   # home.sessionVariables = {
-  #   XDG_DATA_DIRS = "$HOME/.nix-profile/share:${config.home.sessionVariables.XDG_DATA_DIRS}";
+  #   # XDG_DATA_DIRS = "$HOME/.nix-profile/share:${config.home.sessionVariables.XDG_DATA_DIRS}";
+    
   # };
 
   # # ensure binaries are on PATH too

@@ -1,3 +1,5 @@
+exec_always --no-startup-id bash -c 'source ~/.config/sway/env'
+
 # Load nix & hm session vars
 # exec_always --no-startup-id /usr/bin/env bash -lc 'source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"'
 
@@ -26,7 +28,7 @@ set $right l
 # Your preferred terminal emulator
 set $term ghostty
 # Your preferred application launcher
-set $menu 'rofi -modi run, drun, window  -show drun' 
+set $menu 'XDG_DATA_DIRS=/home/lvjonok/.nix-profile/share:/usr/share:/usr/local/share && rofi -modi run, drun, window  -show drun' 
 set $menu2 'exec rofi -modi drun,run -show drun "$@"'
 
 include /etc/sway/config-vars.d/*
