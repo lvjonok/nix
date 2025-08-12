@@ -125,7 +125,7 @@
       tamasfe.even-better-toml
       charliermarsh.ruff
       # wayou.vscode-todo-highlight
-      gruntfuggly.todo-tree
+      gruntfuggly.todo-tree      
 
       # jjjermiah.pixi-vscode
 
@@ -183,14 +183,14 @@
 
   # generate .desktop entries and drop them into your profile's share/applications
   xdg.desktopEntries = {
-    "google-chrome" = {
-      name        = "Google Chrome";
-      exec        = "google-chrome-stable %U";
-      icon        = "google-chrome";
-      terminal    = false;
-      type        = "Application";
-      categories  = [ "Network" "WebBrowser" ];
-    };
+    # "google-chrome" = {
+    #   name        = "Google Chrome";
+    #   exec        = "google-chrome-stable %U";
+    #   icon        = "google-chrome";
+    #   terminal    = false;
+    #   type        = "Application";
+    #   categories  = [ "Network" "WebBrowser" ];
+    # };
     "code" = {
       name        = "Visual Studio Code";
       exec        = "code %F";
