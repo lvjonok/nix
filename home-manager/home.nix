@@ -4,6 +4,9 @@
   #   ./waybar.nix
   # ];
 
+  # i18n.inputMethod.enabled = "fcitx5";
+  # i18n.inputMethod.fcitx5.package = pkgs.kdePackages.fcitx5-with-addons;
+
   targets.genericLinux.enable = true;
   # targets.genericLinux = {
   #   enable = true;
@@ -39,6 +42,7 @@
 
     telegram-desktop
     pavucontrol
+    slack
 
     mako
     gh
@@ -152,6 +156,8 @@
       "editor.minimap.enabled" = false;
 
       "jupyter.runInDedicatedExtensionHost" = true;
+
+      # "remote.SSH.useLocalServer" = false;
 
       # "python.analysis.typeCheckingMode" = "basic";
     };
