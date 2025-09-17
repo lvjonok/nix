@@ -106,6 +106,12 @@
     enable = true;
     userName = "Lev Kozlov";
     userEmail = "kozlov.l.a10@gmail.com";
+
+    lfs = {
+      enable = true;        # Adds git-lfs and the required filter config
+      # Optional: avoid fetching big LFS blobs on clone/pull; fetch on demand.
+      # skipSmudge = true;
+    };
   };
 
   fonts.fontconfig.enableProfileFonts = true;
@@ -152,10 +158,11 @@
       "editor.fontLigatures" = true;
       "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
       "workbench.colorTheme" = "GitHub Light";
-      # "workbench.colorTheme" = "GitHub Dark Default";
+      # "workbench.colorTheme" = "GitHub Dark";
       "editor.minimap.enabled" = false;
 
       "jupyter.runInDedicatedExtensionHost" = true;
+      "github.copilot.nextEditSuggestions.enabled" = true;
 
       # "remote.SSH.useLocalServer" = false;
 
